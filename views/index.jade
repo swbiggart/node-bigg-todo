@@ -1,0 +1,10 @@
+#todoapp
+  .title
+    h1!= title
+  .content
+    #create-todo
+      input#new-todo(placeholder='What needs to be done?', type='text')
+      span.ui-tooltip-top(style='display: none;') Press Enter to save this task
+    #todos
+      ul#todo-list
+    #todo-stats
