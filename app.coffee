@@ -13,7 +13,11 @@ app.configure ->
   app.use express.bodyParser()
   app.use express.methodOverride()
   app.use app.router
-  app.use express.static(__dirname + '/public') 
+  app.use express.static(__dirname + '/public')
+  #assetHelper = {}
+  #connectAssets = require('connect-assets')({src: 'public', helperContext: assetHelper})
+  #assetHelper.js('main')
+  #app.use connectAssets
 
 app.configure 'development', ->
   app.use express.errorHandler { dumpExceptions: true, showStack: true }

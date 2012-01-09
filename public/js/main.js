@@ -7,11 +7,12 @@ require.config({
     jquery: 'libs/jquery/jquery-min',
     underscore: 'libs/underscore/underscore-min',
     backbone: 'libs/backbone/backbone-optamd3-min',
-    text: 'libs/require/text'
+    text: 'libs/require/text',
+    cs: 'libs/require/cs'
   }
 
 });
 
-require(['views/app'], function(AppView){
+require(['cs!views/app'], function(AppView){
   var app_view = new AppView;
 });
