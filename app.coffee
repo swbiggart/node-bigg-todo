@@ -1,8 +1,11 @@
-
 express = require('express')
-routes = require('./routes')
+mongoose = require('mongoose')
+models = require('./models')
+app = module.exports = express.createServer()
 
-app = module.exports = express.createServer();
+#connect to mongodb
+mongodb_url = process.env.MONGOHQ_URL || 'mongodb://localhost/todo'
+mongoose.connect mongodb_url
 
 # Configuration
 app.configure ->
@@ -10,6 +13,7 @@ app.configure ->
   app.set 'view engine', 'jade'
   app.set 'view options', { pretty: true }
   
+  app.use express.logger()
   app.use express.bodyParser()
   app.use express.methodOverride()
   app.use require('stylus').middleware { src: __dirname + '/public' }
@@ -24,7 +28,12 @@ app.configure 'production', ->
   app.use express.errorHandler()
 
 # Routes
+routes = require('./routes')
 app.get '/', routes.index
+app.post '/todos', routes.create
+app.get '/todos', routes.read
+app.put '/todos/:_id', routes.update
+app.del '/todos/:_id', routes.delete
 
 port = process.env.PORT || 3000
 app.listen port, ->

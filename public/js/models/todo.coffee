@@ -1,6 +1,12 @@
 define ['underscore', 'backbone'], (_, Backbone) ->
   TodoModel = class extends Backbone.Model
-
+    
+    #use _id instead of id to work with mongodb
+    idAttribute: "_id"
+    
+    # UrlRoot to CRUD against
+    urlRoot: '/todos'
+    
     # Default attributes for the todo.
     defaults:
       content: "empty todo..."
@@ -15,9 +21,9 @@ define ['underscore', 'backbone'], (_, Backbone) ->
     toggle: ->
       @save {done: !@get("done")}
 
-    # Remove this Todo from *localStorage* and delete its view.
+    # Remove this Todo from server and delete its view.
     clear: ->
-      @destroy()
-      @view.remove()
-
-  TodoModel
+      @destroy 
+        success: (model, response) => 
+          @view.remove()
+      

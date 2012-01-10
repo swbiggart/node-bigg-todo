@@ -1,16 +1,15 @@
 depends = [
   'underscore',
   'backbone',
-  'libs/backbone/localstorage',
   'cs!models/todo'
 ]
-define depends, (_, Backbone, Store, Todo) ->
+define depends, (_, Backbone, Todo) ->
   TodosCollection = class extends Backbone.Collection
     # Reference to this collection's model.
     model: Todo
 
-    # Save all of the todo items under the `"todos"` namespace.
-    localStorage: new Store "todos"
+    # url to read todos from
+    url: '/todos'
 
     # Filter down the list of all todo items that are finished.
     done: ->

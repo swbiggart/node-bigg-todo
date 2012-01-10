@@ -70,5 +70,3 @@ define depends, ($, _, Backbone, todosTemplate) ->
     # Remove the item, destroy the model.
     clear: ->
       @model.clear()
-
-  TodoView

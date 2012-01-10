@@ -25,7 +25,7 @@ define depends, ($, _, Backbone, Todos, TodoView, statsTemplate) ->
 
     # At initialization we bind to the relevant events on the `Todos`
     # collection, when items are added or changed. Kick things off by
-    # loading any preexisting todos that might be saved in *localStorage*.
+    # loading any preexisting todos that might be saved on server.
     initialize: ->
       _.bindAll @, 'addOne', 'addAll', 'render'
 
@@ -65,7 +65,7 @@ define depends, ($, _, Backbone, Todos, TodoView, statsTemplate) ->
       }
 
     # If you hit return in the main input field, create new **Todo** model,
-    # persisting it to *localStorage*.
+    # persisting it to server.
     createOnEnter: (e) ->
       if e.keyCode != 13
         return
@@ -89,6 +89,3 @@ define depends, ($, _, Backbone, Todos, TodoView, statsTemplate) ->
          return
       show = -> tooltip.show().fadeIn()
       @tooltipTimeout = _.delay show, 1000
-
-  AppView
-
