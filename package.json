@@ -1,5 +1,5 @@
 {
-    "name": "node-coffee-express-backbone-requirejs-todo"
+    "name": "node-bigg-todo"
   , "version": "0.0.1"
   , "dependencies": {
       "express": "2.5.2"

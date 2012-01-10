@@ -4,7 +4,7 @@ models = require('./models')
 app = module.exports = express.createServer()
 
 #connect to mongodb
-mongodb_url = process.env.MONGOHQ_URL || 'mongodb://localhost/todo'
+mongodb_url = process.env.MONGOHQ_URL || 'mongodb://localhost/todos'
 mongoose.connect mongodb_url
 
 # Configuration
@@ -19,7 +19,6 @@ app.configure ->
   app.use require('stylus').middleware { src: __dirname + '/public' }
   app.use app.router
   app.use express.static(__dirname + '/public')
-
 
 app.configure 'development', ->
   app.use express.errorHandler { dumpExceptions: true, showStack: true }
